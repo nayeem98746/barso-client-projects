@@ -1,0 +1,37 @@
+.main-admincms{
+    display: flex;
+    margin:50px ;
+    
+}
+.Risk{
+    background-color:#9dfdce ;
+    width: 162px;
+    border-radius: 5px;
+    height: 133px;
+    margin-right: 20px;
+}
+.recommend{
+    background-color:#fcedb0 ;
+    width: 162px;
+    border-radius: 5px;
+    height: 133px;
+    margin-right: 20px;
+
+
+}
+.health{
+    background-color:#dceaf9 ;
+    width: 162px;
+    border-radius: 5px;
+    height: 133px;
+    margin-right: 20px;
+
+
+}
+.articles{
+    background-color:#fccfcf ;
+    width: 162px;
+    border-radius: 5px;
+    height: 133px;
+
+}

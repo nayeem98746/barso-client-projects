@@ -19,6 +19,9 @@ import TextSnippetOutlinedIcon from '@mui/icons-material/TextSnippetOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
 import Toolbar from '@mui/material/Toolbar';
+import SettingsIcon from '@mui/icons-material/Settings';
+import LogoutIcon from '@mui/icons-material/Logout';
+
 import Typography from '@mui/material/Typography';
 import {
     Outlet,
@@ -26,6 +29,7 @@ import {
 } from "react-router-dom";
 import { Button } from '@mui/material';
 import useAuth from '../../../Hooks/UseAuth';
+import './Dashboard.css'
 
 const drawerWidth = 200;
 
@@ -35,26 +39,29 @@ function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    const { admin } = useAuth();
+    const { admin , logOut } = useAuth();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
     const drawer = (
-        <div>
+        <div style={{ background:'white' , overflow:'hidden' , paddingBottom:'350px'}}>
             <Toolbar />
             <Divider />
             
           
-                <Link to={`/dashboard/General`}> <Button color="inherit"><HomeIcon></HomeIcon> General </Button></Link><br />
-                <Link to={`/dashboard/covid`}><Button color="inherit"> <AssignmentTurnedInOutlinedIcon></AssignmentTurnedInOutlinedIcon> covid -19</Button></Link><br />
+                <Link className='link-style' to={`/dashboard/General`}> <Button className='button-style' color="inherit"><HomeIcon></HomeIcon> General </Button></Link><br />
+                <Link className='link-style' to={`/dashboard/covid`}><Button color="inherit"> <AssignmentTurnedInOutlinedIcon></AssignmentTurnedInOutlinedIcon> covid -19</Button></Link><br />
                 {
-                    admin && <Box><Link to={`/dashboard/addadmin`}><Button color="inherit"><AccountCircleOutlinedIcon /> Make Admin</Button></Link><br />
-                    <Link to={`/dashboard/oncology`}><Button color="inherit"> <TextSnippetOutlinedIcon /> Oncology</Button></Link><br />
-                    <Link to={`/dashboard/admincms`}><Button color="inherit"><SupervisorAccountOutlinedIcon /> Admin CMS</Button></Link><br />
-                    <Link to={`/dashboard/diognostic`}><Button color="inherit">Diognostic Testing</Button></Link><br /></Box>
+                    admin && <Box><Link className='link-style' to={`/dashboard/addadmin`}><Button color="inherit"><AccountCircleOutlinedIcon /> Make Admin</Button></Link><br />
+                    <Link className='link-style' to={`/dashboard/oncology`}><Button color="inherit"> <TextSnippetOutlinedIcon /> Oncology</Button></Link><br />
+                    <Link className='link-style' to={`/dashboard/admincms`}><Button color="inherit"><SupervisorAccountOutlinedIcon /> Admin CMS</Button></Link><br />
+                    <Link className='link-style' to={`/dashboard/diognostic`}><Button color="inherit"> <SettingsIcon /> Diognostic Testing</Button></Link><br /></Box>
                 }
-           
+           <li onClick={()=> logOut()} className='dashboard-li'>
+                        <LogoutIcon className='icon' />
+                        <span>Logout</span>
+                        </li>
         
         </div>
     );
@@ -71,7 +78,7 @@ function Dashboard(props) {
                     ml: { sm: `${drawerWidth}px` },
                 }}
             >
-                <Toolbar>
+                <Toolbar style={{background:'white'}}>
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -81,8 +88,8 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Dashboard
+                    <Typography style={{color:'black' , textAlign:'center'}} variant="h6" noWrap component="div">
+                       Klarity Admin Portal
                     </Typography>
                 </Toolbar>
             </AppBar>

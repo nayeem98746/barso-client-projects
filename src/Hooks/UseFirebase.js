@@ -80,7 +80,7 @@ const loginUser = (email, password) => {
     }
      // admin
      useEffect( () => {
-      fetch(`http://localhost:5000/users/${user.email} `)
+      fetch(`https://desolate-hamlet-44285.herokuapp.com/users/${user.email} `)
       .then(res => res.json())
       .then(data => setAdmin(data.admin))
   }, [user?.email])
@@ -91,7 +91,7 @@ const loginUser = (email, password) => {
     const saveUser = (email, displayName, method) => {
       console.log("saveUser")
       const user = { email, displayName };
-      fetch('http://localhost:5000/users', {
+      fetch('https://desolate-hamlet-44285.herokuapp.com/users', {
           method: method,
           headers: {
               'content-type': 'application/json'

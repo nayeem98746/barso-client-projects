@@ -1,9 +1,11 @@
 import React from 'react';
-
+import AssignmentTurnedInOutlinedIcon from '@mui/icons-material/AssignmentTurnedInOutlined';
+import  './Oncology.css';
 const Oncology = () => {
     return (
-        <div>
-            <h2>this is oncology</h2>
+        <div className='main-oncology'>
+            <AssignmentTurnedInOutlinedIcon />
+            <h3>Oncology Appointments</h3>
         </div>
     );
 };

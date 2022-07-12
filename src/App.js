@@ -16,6 +16,9 @@ import Covid from './Compontents/Dashboard/Covid/Covid';
 import Oncology from './Compontents/Dashboard/Oncology/Oncology';
 import AdminCms from './Compontents/Dashboard/AdminCms/AdminCms';
 import Diognostic from './Compontents/Dashboard/Diognostic/Diognostic';
+import Orderinformation from './Compontents/Dashboard/Orderinformation/Orderinformation';
+import PrivateRoute from './Compontents/PrivateRoute/PrivateRoute';
+import OrderDetails from './Compontents/Dashboard/OrderDetails/OrderDetails';
 function App() {
   return (
     <div className="App">
@@ -40,7 +43,7 @@ function App() {
 
 
             <Route path="/dashboard" element={
-              <Dashboard />
+               <Dashboard /> 
             }>
              
               
@@ -68,6 +71,15 @@ function App() {
                 <Diognostic></Diognostic>
               }>
               </Route>
+              <Route path={`/dashboard/orderinformation/:orderID`} element={
+                <Orderinformation></Orderinformation>
+              }>
+              </Route>
+              <Route path={`/dashboard/orderinformation/:orderID/:detailsID`} element={
+                <OrderDetails></OrderDetails>
+              }>
+              </Route>
+             
               
             </Route>
 
