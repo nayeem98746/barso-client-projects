@@ -20,11 +20,15 @@ const Register = () => {
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e => {
+        console.log('test');
+
         if (loginData.password !== loginData.password2) {
             alert('Your password did not match');
             return
         }
-        registerUser(loginData.email , loginData.password)
+        registerUser(loginData.email , loginData.password,loginData.name )
+        console.log(registerUser);
+        
         e.preventDefault();
 
     }

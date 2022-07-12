@@ -30,7 +30,7 @@ import useAuth from '../../../Hooks/UseAuth';
 const drawerWidth = 200;
 
 function Dashboard(props) {
-    // <FontAwesomeIcon icon="fa-solid fa-code-branch" />
+   
 
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -48,10 +48,12 @@ function Dashboard(props) {
           
                 <Link to={`/dashboard/General`}> <Button color="inherit"><HomeIcon></HomeIcon> General </Button></Link><br />
                 <Link to={`/dashboard/covid`}><Button color="inherit"> <AssignmentTurnedInOutlinedIcon></AssignmentTurnedInOutlinedIcon> covid -19</Button></Link><br />
-                <Link to={`/dashboard/addadmin`}><Button color="inherit"><AccountCircleOutlinedIcon /> Make Admin</Button></Link><br />
-                <Link to={`/dashboard/oncology`}><Button color="inherit"> <TextSnippetOutlinedIcon /> Oncology</Button></Link><br />
-                <Link to={`/dashboard/admincms`}><Button color="inherit"><SupervisorAccountOutlinedIcon /> Admin CMS</Button></Link><br />
-                <Link to={`/dashboard/diognostic`}><Button color="inherit">Diognostic Testing</Button></Link><br />
+                {
+                    admin && <Box><Link to={`/dashboard/addadmin`}><Button color="inherit"><AccountCircleOutlinedIcon /> Make Admin</Button></Link><br />
+                    <Link to={`/dashboard/oncology`}><Button color="inherit"> <TextSnippetOutlinedIcon /> Oncology</Button></Link><br />
+                    <Link to={`/dashboard/admincms`}><Button color="inherit"><SupervisorAccountOutlinedIcon /> Admin CMS</Button></Link><br />
+                    <Link to={`/dashboard/diognostic`}><Button color="inherit">Diognostic Testing</Button></Link><br /></Box>
+                }
            
         
         </div>

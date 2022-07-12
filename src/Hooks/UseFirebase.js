@@ -33,11 +33,15 @@ const useFirebase = () => {
 
 
     // register function
-   const registerUser = (email , password) => {
+   const registerUser = (email , password , name) => {
     setIsLoading(true)
     createUserWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     setAuthError('')
+    const newUser = {email, displayName: name};
+            console.log(newUser);
+            setUser(newUser)
+            saveUser(email, name , 'POST')
   })
   .catch((error) => {
     setAuthError(error.message)
@@ -46,6 +50,7 @@ const useFirebase = () => {
   .finally(() => setIsLoading(false));
 
    }
+   
 
 // login function 
 const loginUser = (email, password) => {
@@ -73,13 +78,35 @@ const loginUser = (email, password) => {
           })
           .finally(() => setIsLoading(false));
     }
+     // admin
+     useEffect( () => {
+      fetch(`http://localhost:5000/users/${user.email} `)
+      .then(res => res.json())
+      .then(data => setAdmin(data.admin))
+  }, [user?.email])
 
 
+    // use server 
+ 
+    const saveUser = (email, displayName, method) => {
+      console.log("saveUser")
+      const user = { email, displayName };
+      fetch('http://localhost:5000/users', {
+          method: method,
+          headers: {
+              'content-type': 'application/json'
+          },
+          body: JSON.stringify(user)
+      })
+          .then( res => res.json() )
+          .then(res => console.log(res))
+  }
 
 
     return{
         user,
         registerUser,
+        admin,
         authError,
         isLoading,
         loginUser,
