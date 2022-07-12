@@ -1,0 +1,91 @@
+import { getAuth, createUserWithEmailAndPassword ,GoogleAuthProvider,signInWithPopup,onAuthStateChanged,updateProfile ,signInWithEmailAndPassword,FacebookAuthProvider , signOut, GithubAuthProvider } from "firebase/auth";
+
+import { useEffect, useState } from "react";
+import initializeaFirebase from "../Compontents/Firebase/firebase.init";
+
+initializeaFirebase()
+
+
+
+const useFirebase = () => {
+
+    const auth = getAuth()
+
+
+    const [ user, setUser ] = useState({})
+    const [ authError, setAuthError ] = useState('');
+    const [ isLoading, setIsLoading ] = useState(true)
+    const [admin , setAdmin ] = useState(false)
+
+    useEffect( ()=>{
+        const unsubscribe = onAuthStateChanged(auth, (user) =>{
+             if(user){
+                 setUser(user)
+                 // setIsLoading(false)
+             }else{  
+                 setUser(null)
+                
+             }
+             setIsLoading(false)
+         });
+         return () => unsubscribe;
+     },[])
+
+
+    // register function
+   const registerUser = (email , password) => {
+    setIsLoading(true)
+    createUserWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    setAuthError('')
+  })
+  .catch((error) => {
+    setAuthError(error.message)
+    // ..
+  })
+  .finally(() => setIsLoading(false));
+
+   }
+
+// login function 
+const loginUser = (email, password) => {
+    setIsLoading(true)
+    signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+     setAuthError('')
+    })
+    .catch((error) => {
+        setAuthError(error.message)
+    }) 
+    .finally(() => setIsLoading(false));
+  
+}
+
+
+  // logOut function
+    const logOut = (navigate) =>{
+        setIsLoading(true)
+        signOut(auth).then(() => {
+            setUser(null)
+            navigate('/')
+          }).catch((error) => {
+            setAuthError( error.message )
+          })
+          .finally(() => setIsLoading(false));
+    }
+
+
+
+
+    return{
+        user,
+        registerUser,
+        authError,
+        isLoading,
+        loginUser,
+        logOut
+    }
+
+
+}
+export default useFirebase;
